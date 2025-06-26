@@ -1,0 +1,24 @@
+{
+  "name": "ai-chat-application",
+  "version": "1.0.0",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "start": "node src/index.js",
+    "dev": "nodemon src/index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "@langchain/anthropic": "^0.3.23",
+    "@langchain/core": "^0.3.61",
+    "dotenv": "^16.5.0",
+    "langchain": "^0.3.29"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.10"
+  }
+}
