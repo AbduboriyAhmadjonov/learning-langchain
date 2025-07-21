@@ -1,14 +1,20 @@
+import bodyParser from 'body-parser';
+import { Telegraf } from 'telegraf';
+import mongoose from 'mongoose';
 import express from 'express';
 import dotenv from 'dotenv';
 import cors from 'cors';
-import bodyParser from 'body-parser';
-import mongoose from 'mongoose';
 
-import chatWithAI from './services/service.js';
-import errorHandler from '../middlewares/errorHandler.js';
-import Chat from './models/chatMessage.js';
+import errorHandler from './middlewares/errorHandler.js';
+import routes from './routes/index.js';
+
+import runTelegram from './services/telegram.js';
 
 dotenv.config();
+
+const bot = new Telegraf(process.env.TELEGRAM_BOT_TOKEN);
+
+runTelegram(bot);
 
 const app = express();
 
@@ -18,35 +24,7 @@ app.use(bodyParser.json());
 
 app.use(errorHandler);
 
-app.post('/api/chat', async (req, res) => {
-  const { message } = req.body;
-
-  if (!message) return res.status(400).json({ error: 'No message provided' });
-
-  console.log('Human: ' + message);
-
-  try {
-    const aiReply = await chatWithAI(message);
-
-    if (!aiReply) return res.status(500).json({ error: 'No response from AI' });
-
-    const chat = new Chat({
-      messages: {
-        messageFromHuman: message,
-        messageFromAI: aiReply,
-      },
-    });
-
-    await chat.save();
-
-    res.status(201).json({ reply: aiReply });
-  } catch (error) {
-    console.error(error);
-    return res
-      .status(500)
-      .json({ error: `Something went wrong: ${error.message}` });
-  }
-});
+app.use(routes);
 
 const PORT = process.env.PORT || 3000;
 const MONGODB_URI = process.env.MONGODB_URI;

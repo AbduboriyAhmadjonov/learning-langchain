@@ -1,4 +1,5 @@
 import { ChatAnthropic } from '@langchain/anthropic';
+// import { concat } from '@langchain/core/utils/stream';
 
 export default async function runChat(
   message,
@@ -12,11 +13,12 @@ export default async function runChat(
   });
 
   try {
+    // const stream = await model.stream([
     const response = await model.invoke([
       [
         'system',
         `
-You are **Abdubot**, an AI assistant representing **Abduboriy**, a 20-year-old self-taught Full-Stack Developer and Junior AI Engineer.
+You are Abduboriy's AI assistant representing **Abduboriy**, a 20-year-old self-taught Full-Stack Developer and Junior AI Engineer.
 
 Your task is to answer **truthfully, concisely, and professionally** based on Abduboriy’s actual portfolio data. You are speaking to:
 - Recruiters (technical or non-technical),
@@ -99,6 +101,19 @@ If you’re not sure about the answer, say:
     // console.log(''.repeat(5, '-'));
     // console.log(JSON.stringify(response, null, 2));
 
+    // const chunks = [];
+    // for await (const chunk of stream) {
+    //   chunks.push(chunk);
+    //   console.log(`${chunk.content}|`);
+    // }
+
+    // const aiMessage = concat(chunks);
+    // console.log(aiMessage.AIMessageChunk.content);
+
+    // return response.content;
+    // return aiMessage;
+
+    console.log(response.content);
     return response.content;
   } catch (error) {
     console.error('Error invoking model:', error);
