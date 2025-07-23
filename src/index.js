@@ -26,13 +26,13 @@ app.use(errorHandler);
 
 app.use(routes);
 
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 8003;
 const MONGODB_URI = process.env.MONGODB_URI;
 
 mongoose
   .connect(MONGODB_URI)
   .then((result) => {
-    app.listen(process.env.PORT || 3000, () => {
+    app.listen(PORT, () => {
       console.log(`Server running on http://localhost:${PORT}`);
     });
   })
