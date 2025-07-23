@@ -1,4 +1,6 @@
-export default runTelegram = (bot) => {
+import { requireAdmin } from '../middlewares/adminCheck.js';
+
+const runTelegram = (bot) => {
   bot.command('register', requireAdmin(), async (ctx) => {
     const message = await handleStatsCommand(ctx);
 
@@ -24,3 +26,5 @@ export default runTelegram = (bot) => {
   process.once('SIGINT', () => bot.stop('SIGINT'));
   process.once('SIGTERM', () => bot.stop('SIGTERM'));
 };
+
+export default runTelegram;

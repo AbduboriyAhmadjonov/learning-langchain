@@ -1,7 +1,7 @@
 import { Router } from 'express';
 
-import chatWithAI from './services/service.js';
-import Chat from './models/chatMessage.js';
+import chatWithAI from '../services/service.js';
+import Chat from '../models/chatMessage.js';
 
 const router = Router();
 
