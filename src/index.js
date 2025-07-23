@@ -32,7 +32,7 @@ const MONGODB_URI = process.env.MONGODB_URI;
 mongoose
   .connect(MONGODB_URI)
   .then((result) => {
-    app.listen(PORT, () => {
+    app.listen(PORT, '127.0.0.1', () => {
       console.log(`Server running on http://localhost:${PORT}`);
     });
   })
