@@ -18,7 +18,11 @@ runTelegram(bot);
 
 const app = express();
 
-app.use(cors());
+app.use(
+  cors({
+    origin: ['https://llm.abduboriy.tech', 'https://abduboriy.tech'],
+  })
+);
 
 app.use(bodyParser.json());
 

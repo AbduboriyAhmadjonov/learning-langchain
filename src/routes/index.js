@@ -8,7 +8,7 @@ const router = Router();
 /** Health checker */
 router.get('/api/chat', async (req, res) => {
   console.log('success');
-  return res.status(200);
+  return res.status(200).send('OK');
 });
 
 /** Chat bot for my Portfolio */
