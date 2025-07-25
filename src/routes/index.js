@@ -7,6 +7,10 @@ const router = Router();
 
 /** Health checker */
 router.get('/api/chat', async (req, res) => {
+  const message = req.body.message;
+  if (!message) {
+    return res.status(400).json({ error: 'No message provided' });
+  }
   console.log('success');
   return res.status(200).send('OK');
 });
