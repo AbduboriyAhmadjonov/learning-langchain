@@ -21,6 +21,9 @@ const app = express();
 app.use(
   cors({
     origin: ['https://llm.abduboriy.tech', 'https://abduboriy.tech'],
+    credentials: true,
+    // allowedHeaders: ['Content-Type', 'Authorization'],
+    // methods: ['GET', 'POST', 'PUT', 'DELETE'],
   })
 );
 
