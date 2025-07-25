@@ -6,13 +6,9 @@ import Chat from '../models/chatMessage.js';
 const router = Router();
 
 /** Health checker */
-router.get('/api/health', async (req, res) => {
-  const message = req.body.message;
-  if (!message) {
-    return res.status(400).json({ error: 'No message provided' });
-  }
+router.get('/api/health', (_, res) => {
   console.log('success');
-  return res.status(200).send('OK');
+  res.sendStatus(200);
 });
 
 /** Chat bot for my Portfolio */
