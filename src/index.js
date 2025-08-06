@@ -20,11 +20,7 @@ const app = express();
 
 app.use(
   cors({
-    origin: [
-      'https://llm.abduboriy.tech',
-      'https://abduboriy.tech',
-      'http://localhost:5173',
-    ],
+    origin: ['https://llm.abduboriy.tech', 'https://abduboriy.tech', 'http://localhost:5173'],
     credentials: true,
     allowedHeaders: ['Content-Type'],
     methods: ['GET', 'POST', 'OPTIONS'],
